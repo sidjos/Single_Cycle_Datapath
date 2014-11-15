@@ -18,7 +18,7 @@ entity alu_control_logic_s_tb is
 end entity alu_control_logic_s_tb;
 
 architecture behavioral of alu_control_logic_s_tb is
---Entity (as component) and input ports (as signals) go here
+-- Entity (as component) and input ports (as signals) go here
 component alu_control_logic_s is
   port (
     instruction: in std_logic_vector (31 downto 0);
@@ -35,7 +35,7 @@ component alu_control_logic_s is
     Rd, Rs, Rt: out std_logic_vector(4 downto 0)
   );
   end component alu_control_logic_s;
---component declaration and stimuli processes go here
+-- component declaration and stimuli processes go here
   signal opcode_tb, funct_tb : std_logic_vector(5 downto 0) := B"00_0000";
   -- signal nPC_sel_tb, Reg_Dst_tb, RegWr_tb, ExtOp_tb, ALUSrc_tb, ALUctr_tb, MemWr_tb, MemtoReg_tb : std_logic := '0';
 
