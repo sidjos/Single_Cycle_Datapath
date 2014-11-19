@@ -4,7 +4,6 @@ use IEEE.std_logic_1164.all; -- std_logic
 entity alu_control_logic_s is
   port (
     instruction: in std_logic_vector (31 downto 0);
-    nPC_sel  : out std_logic;
     Reg_Dst  : out std_logic;
     RegWr    : out std_logic;
     ExtOp    : out std_logic;
@@ -23,7 +22,7 @@ end alu_control_logic_s;
 architecture alu_control_logic_str of alu_control_logic_s is
   signal opcode_n, funct_n: std_logic_vector(5 downto 0);
   signal add_g_o, addu_g_o, sub_g_o, subu_g_o, and_g_o, or_g_o, sll_g_o, slt_g_o, sltu_g_o : std_logic; -- r type
-  signal addi_g_o, lw_g_o, sw_g_o, beq_g_o, bne_g_o : std_logic; -- i type
+  signal addi_g_o, lw_g_o, sw_g_o, beq_g_o, bne_g_o, nPC_sel : std_logic; -- i type
   signal beq_g_on, bne_g_on, lw_g_on, sw_g_on, sll_g_on, slt_g_on, sltu_g_on : std_logic; -- invert instruction add gate
   signal zero_s : std_logic := '0';
   signal opcode, funct: std_logic_vector (5 downto 0);

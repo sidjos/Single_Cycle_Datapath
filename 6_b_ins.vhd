@@ -8,7 +8,8 @@ entity ins is
 		imm16: 	in std_logic_vector(15 downto 0);
 		clk: 	in std_logic; --Negative Edge Trigger
 		branch: in std_logic;
-		zero:	in std_logic
+		zero:	in std_logic;
+		instruction: out std_logic_vector ( 31 downto 0)
 	     );
 	
 end ins;
@@ -23,7 +24,6 @@ signal fulladder1_cout: std_logic;
 signal not_clk: std_logic;
 signal pc0: std_logic_vector(31 downto 0);
 signal nPC_sel: std_logic;
-signal instruction: std_logic_vector(31 downto 0);
 
 begin
 	--PC Ext
