@@ -62,6 +62,3 @@ begin
     control : alu_control_logic_s port map (instruction=>instruction0, Reg_Dst=>Reg_Dst0, RegWr=>RegWr0, ExtOp=>ExtOp0, ALUSrc=>ALUSrc0, ALUctr=>ALUctr0, MemWr=>MemWr0, MemtoReg=>MemtoReg0,
                                            Branch=>Branch0, Rd=>Rd0, Rs=>Rs0, Rt=>Rt0);
 end structural;
-    
-    
-    

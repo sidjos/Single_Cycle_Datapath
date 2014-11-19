@@ -38,11 +38,11 @@ begin
 	--mux1test <= mux1; for testing
 	
 	syncram0_map:  	syncram	
- 			generic map (mem_file => "sort_corrected_branch.dat")
+ 			generic map (mem_file => "unsigned_sum.dat")
  			port map (clk=>clk, cs=>'1', oe=>'1', we=>regwr,addr=>mux0, din=>input, dout=>A);
 
 	syncram1_map:  	syncram	 
-			generic map (mem_file => "sort_corrected_branch.dat")
+			generic map (mem_file => "unsigned_sum.dat")
 			port map (clk=>clk, cs=>'1', oe=>'1', we=>regwr,addr=>mux1, din=>input, dout=>B);
 	
 end architecture structural;

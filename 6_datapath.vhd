@@ -107,7 +107,7 @@ end component;
    
    alu_map: alu port map ( ALUctr, busA, busB_In, cout, ovf, Equal, ALU_Output);
   
-   Data_Memory:  	syncram	generic map (mem_file => "sort_corrected_branch.dat")
+   Data_Memory:  	syncram	generic map (mem_file => "unsigned_sum.dat")
  			                 port map (clk=>clk, cs=>'1', oe=>'1', we=>MemWr,addr=>ALU_Output, din=>busB, dout=>Data_Out);
  			 
    Mem_to_reg_mux: mux_32 port map ( MemtoReg, ALU_Output, Data_Out, busW);
