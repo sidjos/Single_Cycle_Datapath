@@ -35,7 +35,7 @@ begin
   Rt <= instruction(20 downto 16);
   Rs <= instruction(25 downto 21);
 
--- invert the code
+-- invert the opcode
   not_g_op0 : entity work.not_gate
     port map(opcode(0), opcode_n(0));
   
