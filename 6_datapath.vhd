@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use work.eecs361_gates.all;
+use work.eecs361.all;
 
 entity datapath_6 is
     port(
@@ -93,15 +94,32 @@ end component;
 	    z	    : out std_logic_vector(31 downto 0)
       );
     end component;
+    
+    component sync_s is
+	    port (
+		    clk: 	in std_logic;
+		    busW_in: in std_logic_vector (31 downto 0);
+          busW_out: out std_logic_vector (31 downto 0)
+	         );
+    end component;
    
+   signal master_RegWr, RegWr_not, master_MemWr, MemWr_not: std_logic;
    signal Rw: std_logic_vector ( 4 downto 0);
-   signal busA, busB, busW, busB_In, imm_extended, Data_Out, ALU_Output : std_logic_vector (31 downto 0);
+   signal busA, busB, busW, busW_out, busB_In, imm_extended, Data_Out, ALU_Output : std_logic_vector (31 downto 0);
    
    begin 
    
+   syncreg: sync_s port map (clk, busW, busW_out);
+   
+   the_not: not_gate port map(RegWr, RegWr_not);
+   the_not2: not_gate port map(MemWr, MemWr_not);
+   
+   the_master: dffr_a port map( clk, RegWr_not, '0', '0', RegWr, '1', master_RegWr); 
+   the_master2: dffr_a port map (clk, MemWr_not, '0', '0', MemWr, '1', master_MemWr);
+   
    mux_rs_rt_rw: mux_5_S port map ( RegDst, Rt, Rd, Rw);
    
-   Register_Memory: reg_32 port map ( clk , RegWr, Rw, Rs, Rt, busW, busA, busB);
+   Register_Memory: reg_32 port map ( clk , master_RegWr, Rw, Rs, Rt, busW_out, busA, busB);
    
    extender_datapath: extender port map ( ExtOp, imm16, imm_extended);
    
