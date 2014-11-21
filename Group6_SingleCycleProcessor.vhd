@@ -44,7 +44,7 @@ component ins is
 		zero:	in std_logic;
 		instruction: out std_logic_vector ( 31 downto 0)
 	     );
-	
+
 end component;
         
 signal imm160: std_logic_vector(15 downto 0);
