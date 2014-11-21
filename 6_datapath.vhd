@@ -22,12 +22,14 @@ architecture structural of datapath_6 is
             );
     end component;
 
-    component syncram	is
+    
+
+
+    component sram	is
     generic(
 	mem_file : string
   );
   port (
-    clk   : in  std_logic;
 	cs	  : in	std_logic;
 	oe	  :	in	std_logic;
 	we	  :	in	std_logic;
@@ -107,8 +109,8 @@ end component;
    
    alu_map: alu port map ( ALUctr, busA, busB_In, cout, ovf, Equal, ALU_Output);
   
-   Data_Memory:  	syncram	generic map (mem_file => "unsigned_sum.dat")
- 			                 port map (clk=>clk, cs=>'1', oe=>'1', we=>MemWr,addr=>ALU_Output, din=>busB, dout=>Data_Out);
+   Data_Memory:  	sram	generic map (mem_file => "unsigned_sum.dat")
+ 			                 port map (cs=>'1', oe=>'1', we=>MemWr,addr=>ALU_Output, din=>busB, dout=>Data_Out);
  			 
    Mem_to_reg_mux: mux_32 port map ( MemtoReg, ALU_Output, Data_Out, busW);
 

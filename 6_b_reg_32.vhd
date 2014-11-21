@@ -7,7 +7,7 @@ use work.eecs361.all;
 entity reg_32 is
 
   port (
-    clk          : in  std_logic; --Positive Edge Trigger(Align with our diagram)
+    --clk          : in  std_logic; --Positive Edge Trigger(Align with our diagram)
     regwr        : in  std_logic;
     rw 		 : in std_logic_vector(4 downto 0);
     ra 		 : in std_logic_vector(4 downto 0);
@@ -37,12 +37,12 @@ begin
 	--mux0test <= mux0; for testing
 	--mux1test <= mux1; for testing
 	
-	syncram0_map:  	syncram	
+	sram0_map:  	sram	
  			generic map (mem_file => "unsigned_sum.dat")
- 			port map (clk=>clk, cs=>'1', oe=>'1', we=>regwr,addr=>mux0, din=>input, dout=>A);
+ 			port map (cs=>'1', oe=>'1', we=>regwr,addr=>mux0, din=>input, dout=>A);
 
-	syncram1_map:  	syncram	 
+	sram1_map:  	sram	 
 			generic map (mem_file => "unsigned_sum.dat")
-			port map (clk=>clk, cs=>'1', oe=>'1', we=>regwr,addr=>mux1, din=>input, dout=>B);
+			port map (cs=>'1', oe=>'1', we=>regwr,addr=>mux1, din=>input, dout=>B);
 	
 end architecture structural;
