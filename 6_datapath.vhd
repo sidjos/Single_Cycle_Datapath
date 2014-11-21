@@ -39,22 +39,6 @@ architecture structural of datapath_6 is
 	dout  :	out std_logic_vector(31 downto 0)
   );
    end component;
-   
-  component reg_32 is
-  port (
-    clk          : in  std_logic; --Positive Edge Trigger(Align with our diagram)
-    regwr        : in  std_logic;
-    rw 		 : in std_logic_vector(4 downto 0);
-    ra 		 : in std_logic_vector(4 downto 0);
-    rb 		 : in std_logic_vector(4 downto 0);
-    input	 : in std_logic_vector(31 downto 0);
-    A   	 : out std_logic_vector(31 downto 0);
-    B  		 : out std_logic_vector(31 downto 0)
-    --mux0test   	 : out std_logic_vector(31 downto 0); for testing
-    --mux1test  	 : out std_logic_vector(31 downto 0)  for testing
-    
-  );
-end component;
                    
     component alu is 
      port(
@@ -75,6 +59,19 @@ end component;
 	    src1  :	in	std_logic_vector (4 downto 0);
 	    z	  : out std_logic_vector ( 4 downto 0)
         );
+    end component;
+    
+    component reg_32 is
+    
+      port (
+        regwr        : in  std_logic;
+        rw 		 : in std_logic_vector(4 downto 0);
+        ra 		 : in std_logic_vector(4 downto 0);
+        rb 		 : in std_logic_vector(4 downto 0);
+        input	 : in std_logic_vector(31 downto 0);
+        A   	 : out std_logic_vector(31 downto 0);
+        B  		 : out std_logic_vector(31 downto 0)
+      );
     end component;
 
       component mux is
@@ -119,7 +116,7 @@ end component;
    
    mux_rs_rt_rw: mux_5_S port map ( RegDst, Rt, Rd, Rw);
    
-   Register_Memory: reg_32 port map ( clk , master_RegWr, Rw, Rs, Rt, busW_out, busA, busB);
+   Register_Memory: reg_32 port map ( master_RegWr, Rw, Rs, Rt, busW_out, busA, busB);
    
    extender_datapath: extender port map ( ExtOp, imm16, imm_extended);
    
