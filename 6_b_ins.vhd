@@ -81,7 +81,6 @@ begin
 	dff31_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(31), enable=>'1',q=>pc0(31));
 
 	--SRAM
-
 	sram0_map:	sram 	
 			generic map (mem_file => "unsigned_sum.dat")
 			port map (cs=>'1',oe=>'1',we=>'0',addr=>pc0,
