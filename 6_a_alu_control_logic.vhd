@@ -13,7 +13,7 @@ entity alu_control_logic_s is
     MemtoReg : out std_logic;
     Branch   : out std_logic;
     Rd, Rs, Rt: out std_logic_vector(4 downto 0);
-    imm16: out std_logic_vector (15 downto 0)
+    Imm16 : out std_logic_vector(15 downto 0)
   );
 end alu_control_logic_s;
   
@@ -27,16 +27,19 @@ architecture alu_control_logic_str of alu_control_logic_s is
   signal beq_g_on, bne_g_on, lw_g_on, sw_g_on, sll_g_on, slt_g_on, sltu_g_on : std_logic; -- invert instruction add gate
   signal zero_s : std_logic := '0';
   signal opcode, funct: std_logic_vector (5 downto 0);
+  signal shamt_s : std_logic_vector(4 downto 0);
+  signal Imm16_s, Imm16_shamt_s : std_logic_vector(15 downto 0);
 begin 
 -- categorized the instruction
   opcode <= instruction(31 downto 26);
-  funct <= instruction(5 downto 0);
-  Rd <= instruction (15 downto 11 );
-  Rt <= instruction(20 downto 16);
   Rs <= instruction(25 downto 21);
-  imm16 <= instruction (15 downto 0);
+  Rt <= instruction(20 downto 16);
+  Rd <= instruction(15 downto 11);
+  shamt_s <= instruction(10 downto 6);
+  funct <= instruction(5 downto 0);
+  Imm16_s <= instruction(15 downto 0);
 
--- invert the opcode
+-- invert the code
   not_g_op0 : entity work.not_gate
     port map(opcode(0), opcode_n(0));
   
@@ -185,6 +188,20 @@ begin
     port map(beq_g_o, bne_g_o, Branch);
 -- end control signal except ALUctr
 
+-- mux between the Imm16 and the Imm16 from 5-bit shamt 
+-- output(31 downto 16) <= B"0000000000000000";
+-- output(15 downto 0) <= input;  
+  Imm16_shamt_s(15 downto 5) <= B"0_00000_00000";
+  Imm16_shamt_s(4 downto 0) <= shamt_s;
+  mux_Imm16_vs_Imm16_shamt_s : entity work.mux_n
+    generic map (n => 16)
+    -- port map (sll_g_o => sel, Imm16_s => src0, Imm16_shamt_s => src1, Imm16 => z);
+    port map (
+      sel => sll_g_o, 
+      src0(15 downto 0) => Imm16_s, 
+      src1(15 downto 0) => Imm16_shamt_s,
+      z(15 downto 0) => Imm16
+      );
 -- alu signal
 -- add  0000
 -- sub  0001
