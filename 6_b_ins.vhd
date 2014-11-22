@@ -8,7 +8,8 @@ entity ins is
 		rst:	in std_logic;
 		imm16: 	in std_logic_vector(15 downto 0);
 		clk: 	in std_logic; --Negative Edge Trigger
-		branch: in std_logic;
+		bne_branch: in std_logic;
+		beq_branch: in std_logic;
 		zero:	in std_logic;
 		instruction: out std_logic_vector ( 31 downto 0)
 	     );
@@ -25,6 +26,11 @@ signal fulladder1_cout: std_logic;
 signal not_clk: std_logic;
 signal pc0: std_logic_vector(31 downto 0);
 signal nPC_sel: std_logic;
+signal and0: std_logic;
+signal and1: std_logic;
+signal not0: std_logic;
+signal not_zero: std_logic;
+
 
 begin
 	--PC Ext (sign extension & multiply by 4)
@@ -38,11 +44,17 @@ begin
 					      cout=>fulladder1_cout, z=>fulladder1);
 
 	--1 Mux
-	and0_map:	and_gate port map (x=>zero, y=>branch, z=>nPC_sel);
+	not0_map:	not_gate port map (x=>zero,z=>not_zero);
+	and0_map:	and_gate port map (x=>not_zero, y=>bne_branch, z=>and0);
+	and1_map:	and_gate port map (x=>zero, y=>beq_branch, z=>and1);
+	or0_map:	or_gate port map (x=>and0, y=>and1, z=>nPC_sel);
+
+
+
 	mux1_map:	mux_32 port map (sel=>nPC_sel, src0=>fulladder1, src1=>fulladder0, z=>mux1);
 
 	--PC(starting with 0x00400020)
-	not0_map:	not_gate port map (x=>clk,z=>not_clk);
+	not1_map:	not_gate port map (x=>clk,z=>not_clk);
 
 	dff0_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
 	dff1_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(1), enable=>'1',q=>pc0(1));
