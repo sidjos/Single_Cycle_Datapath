@@ -28,8 +28,8 @@ signal nPC_sel: std_logic;
 
 begin
 	--PC Ext (sign extension & multiply by 4)
-	mux0_map:	mux_32 port map (sel=>imm16(15), src0(31 downto 18)=>B"0000000000000000",src0(17 downto 2)=>imm16,src0(1 downto 0)=>B"00", 
-						         src1(31 downto 18)=>B"1111111111111111",src1(17 downto 2)=>imm16,src1(1 downto 0)=>B"00",z=>mux0);
+	mux0_map:	mux_32 port map (sel=>imm16(15), src0(31 downto 18)=>B"00000000000000",src0(17 downto 2)=>imm16,src0(1 downto 0)=>B"00", 
+						         src1(31 downto 18)=>B"11111111111111",src1(17 downto 2)=>imm16,src1(1 downto 0)=>B"00",z=>mux0);
 
 	--2 Adders
 	 fulladder0_map:	fulladder_32 port map(x=>mux0, y=>fulladder1, cin=>'0', cout=>fulladder0_cout, z=>fulladder0);
