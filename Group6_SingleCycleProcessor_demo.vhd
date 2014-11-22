@@ -12,8 +12,6 @@ port (
 end Group6_SingleCycleProcessor_demo;
 
 architecture structural of Group6_SingleCycleProcessor_demo is
-
-
 component top_level is
   port (
         clk : in std_logic;
@@ -23,13 +21,9 @@ component top_level is
 end component;
 
 signal clock, reset_sig : std_logic;
-
 begin
-
 test: top_level port map (clk=>clock, reset=>reset_sig, ovf=>ovf,cout=>cout);
-
 testprocess: process begin
-
 clock<='0';
 reset_sig <= '1';
 wait for 5 ns;
