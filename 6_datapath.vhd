@@ -23,7 +23,7 @@ architecture structural of datapath_6 is
             );
     end component;
 
-    component sram	is
+    component sram	is   
     generic(
 	mem_file : string
   );
@@ -97,15 +97,17 @@ architecture structural of datapath_6 is
 	         );
     end component;
    
-   signal AND_RegWr, AND_MemWr : std_logic;
+   signal AND_RegWr, AND_MemWr: std_logic;
    signal Rw: std_logic_vector ( 4 downto 0);
    signal busA, busB, busW, busW_out, busB_In, imm_extended, Data_Out, ALU_Output : std_logic_vector (31 downto 0);
    
    begin 
    
+
    syncreg: sync_s port map (clk, busW, busW_out);
    
    Gated_RegWr: and_gate port map(RegWr, clk, AND_RegWr);
+
    Gated_MemWr: and_gate port map(MemWr, clk, AND_MemWr);
    
 --   the_master: dffr_a port map( clk, RegWr_not, '0', '0', RegWr, '1', master_RegWr); 
@@ -121,11 +123,11 @@ architecture structural of datapath_6 is
    
    alu_map: alu port map ( ALUctr, busA, busB_In, cout, ovf, Equal, ALU_Output);
   
-   Data_Memory:  	sram	generic map (mem_file => "unsigned_sum.dat")
+   Data_Memory:  	sram	generic map (mem_file => "unsigned_sum_test.dat")
  			                 port map (cs=>'1', oe=>'1', we=>AND_MemWr,addr=>ALU_Output, din=>busB, dout=>Data_Out);
  			 
    Mem_to_reg_mux: mux_32 port map ( MemtoReg, ALU_Output, Data_Out, busW);
 
-end structural; 
-   
-   
+end structural;
+
+
