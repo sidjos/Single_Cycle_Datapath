@@ -11,7 +11,8 @@ entity alu_control_logic_s is
     ALUctr   : out std_logic_vector(3 downto 0);
     MemWr    : out std_logic;
     MemtoReg : out std_logic;
-    Branch   : out std_logic;
+    bne_branch   : out std_logic;
+    beq_branch   : out std_logic;
     Rd, Rs, Rt: out std_logic_vector(4 downto 0);
     Imm16 : out std_logic_vector(15 downto 0)
   );
@@ -183,9 +184,6 @@ begin
 
   and_g_memtoreg : entity work.and_gate 
     port map(lw_g_o, lw_g_o, MemtoReg);
-
-  or_g_branch : entity work.or_gate
-    port map(beq_g_o, bne_g_o, Branch);
 -- end control signal except ALUctr
 
 -- mux between the Imm16 and the Imm16 from 5-bit shamt 
@@ -224,4 +222,9 @@ begin
   or_g_alucrt3 : entity work.or_gate
     port map(slt_g_o, sltu_g_o, ALUctr(3));        
 -- end alucrt
+
+-- beq_branch, bne_branch
+  bne_branch <= bne_g_o;
+  beq_branch <= beq_g_o;
+-- end beq_branch, bne_branch
 end architecture alu_control_logic_str;
