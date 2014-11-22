@@ -32,7 +32,7 @@ begin
 						         src1(31 downto 18)=>B"1111111111111111",src1(17 downto 2)=>imm16,src1(1 downto 0)=>B"00",z=>mux0);
 
 	--2 Adders
-	fulladder0_map:	fulladder_32 port map(x=>mux0, y=>fulladder1, cin=>'0', cout=>fulladder0_cout, z=>fulladder0);
+	 fulladder0_map:	fulladder_32 port map(x=>mux0, y=>fulladder1, cin=>'0', cout=>fulladder0_cout, z=>fulladder0);
 	
 	fulladder1_map:	fulladder_32 port map(x=>B"00000000000000000000000000000100", y=>pc0, cin=>'0',
 					      cout=>fulladder1_cout, z=>fulladder1);
