@@ -45,40 +45,40 @@ begin
 	not0_map:	not_gate port map (x=>clk,z=>not_clk);
 
 	dff0_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff1_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff2_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff3_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff4_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff5_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'1', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff6_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff7_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
+	dff1_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(1));
+	dff2_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(2));
+	dff3_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(3));
+	dff4_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(4));
+	dff5_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'1', d=>mux1(0), enable=>'1',q=>pc0(5));
+	dff6_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(6));
+	dff7_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(7));
 
-	dff8_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff9_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff10_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff11_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff12_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff13_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff14_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff15_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
+	dff8_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(8));
+	dff9_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(9));
+	dff10_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(10));
+	dff11_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(11));
+	dff12_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(12));
+	dff13_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(13));
+	dff14_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(14));
+	dff15_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(15));
 
-	dff16_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff17_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff18_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff19_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff20_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff21_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff22_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'1', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff23_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
+	dff16_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(16));
+	dff17_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(17));
+	dff18_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(18));
+	dff19_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(19));
+	dff20_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(20));
+	dff21_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(21));
+	dff22_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'1', d=>mux1(0), enable=>'1',q=>pc0(22));
+	dff23_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(23));
 
-	dff24_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff25_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff26_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff27_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff28_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff29_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff30_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
-	dff31_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(0));
+	dff24_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(24));
+	dff25_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(25));
+	dff26_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(26));
+	dff27_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(27));
+	dff28_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(28));
+	dff29_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(29));
+	dff30_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(30));
+	dff31_map:	dffr_a	port map (clk=>not_clk, arst=>'0',aload=>rst, adata=>'0', d=>mux1(0), enable=>'1',q=>pc0(31));
 
 	--SRAM
 
