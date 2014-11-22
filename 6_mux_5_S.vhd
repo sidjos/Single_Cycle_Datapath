@@ -26,7 +26,7 @@ architecture structural of mux_5_S is
        mux0: mux port map ( sel, src0(0), src1(0), z(0));
        mux1: mux port map ( sel, src0(1), src1(1), z(1));
        mux2: mux port map ( sel, src0(2), src1(2), z(2));
-       mux3: mux port map ( sel, src0(3), src1(2), z(3));
-       mux4: mux port map ( sel, src0(4), src1(2), z(4));
+       mux3: mux port map ( sel, src0(3), src1(3), z(3));
+       mux4: mux port map ( sel, src0(4), src1(4), z(4));
 
 end structural;

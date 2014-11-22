@@ -33,7 +33,8 @@ component alu_control_logic_s is
     MemWr    : out std_logic;
     MemtoReg : out std_logic;
     Branch   : out std_logic;
-    Rd, Rs, Rt: out std_logic_vector(4 downto 0)
+    Rd, Rs, Rt: out std_logic_vector(4 downto 0);
+    imm16: out std_logic_vector (15 downto 0)
   );
 end component;
 
@@ -62,5 +63,5 @@ begin
     instruction_fetch: ins port map ( rst=> reset, imm16=>imm160,clk=>clk, branch=>branch0, zero=>zero0, instruction=>instruction0);
     
     control : alu_control_logic_s port map (instruction=>instruction0, Reg_Dst=>Reg_Dst0, RegWr=>RegWr0, ExtOp=>ExtOp0, ALUSrc=>ALUSrc0, ALUctr=>ALUctr0, MemWr=>MemWr0, MemtoReg=>MemtoReg0,
-                                           Branch=>Branch0, Rd=>Rd0, Rs=>Rs0, Rt=>Rt0);
+                                           Branch=>Branch0, Rd=>Rd0, Rs=>Rs0, Rt=>Rt0, imm16=>imm160);
 end structural;

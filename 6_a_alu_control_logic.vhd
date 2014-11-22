@@ -12,7 +12,8 @@ entity alu_control_logic_s is
     MemWr    : out std_logic;
     MemtoReg : out std_logic;
     Branch   : out std_logic;
-    Rd, Rs, Rt: out std_logic_vector(4 downto 0)
+    Rd, Rs, Rt: out std_logic_vector(4 downto 0);
+    imm16: out std_logic_vector (15 downto 0)
   );
 end alu_control_logic_s;
   
@@ -33,6 +34,7 @@ begin
   Rd <= instruction (15 downto 11 );
   Rt <= instruction(20 downto 16);
   Rs <= instruction(25 downto 21);
+  imm16 <= instruction (15 downto 0);
 
 -- invert the opcode
   not_g_op0 : entity work.not_gate
@@ -161,7 +163,7 @@ begin
 
   or_g_reg_dst : entity work.or_gate_14to1_s
     port map(add_g_o, addu_g_o, sub_g_o, subu_g_o, and_g_o, or_g_o, 
-             sll_g_o, slt_g_o, sltu_g_o, addi_g_o, zero_s, zero_s, zero_s, zero_s, Reg_Dst);     
+             sll_g_o, slt_g_o, sltu_g_o, zero_s, zero_s, zero_s, zero_s, zero_s, Reg_Dst);     
 
   or_g_regwr : entity work.or_gate_14to1_s
     port map(add_g_o, addu_g_o, sub_g_o, subu_g_o, and_g_o, or_g_o, 

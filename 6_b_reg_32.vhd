@@ -28,21 +28,21 @@ signal mux1: std_logic_vector(31 downto 0);
 begin
 	      
 		--Arrange 2 Synchronized RAM with proper connections
-	mux0_map:	mux_32	 port map (sel=>regwr, src0(31 downto 5)=>B"000100000000000000000000000", src0(4 downto 0)=>ra,
-					               src1(31 downto 5)=>B"000100000000000000000000000", src1(4 downto 0)=>rw, z=>mux0);
+	mux0_map:	mux_32	 port map (sel=>regwr, src0(31 downto 5)=>B"000000000000000000000000000", src0(4 downto 0)=>ra,
+					               src1(31 downto 5)=>B"000000000000000000000000000", src1(4 downto 0)=>rw, z=>mux0);
 
-	mux1_map:	mux_32	 port map (sel=>regwr, src0(31 downto 5)=>B"000100000000000000000000000", src0(4 downto 0)=>rb,
-					               src1(31 downto 5)=>B"000100000000000000000000000", src1(4 downto 0)=>rw, z=>mux1);
+	mux1_map:	mux_32	 port map (sel=>regwr, src0(31 downto 5)=>B"000000000000000000000000000", src0(4 downto 0)=>rb,
+					               src1(31 downto 5)=>B"000000000000000000000000000", src1(4 downto 0)=>rw, z=>mux1);
 	
 	--mux0test <= mux0; for testing
 	--mux1test <= mux1; for testing
 	
 	sram0_map:  	sram	
- 			generic map (mem_file => "unsigned_sum.dat")
+ 			generic map (mem_file => "reg_init.dat")
  			port map (cs=>'1', oe=>'1', we=>regwr,addr=>mux0, din=>input, dout=>A);
 
 	sram1_map:  	sram	 
-			generic map (mem_file => "unsigned_sum.dat")
+			generic map (mem_file => "reg_init.dat")
 			port map (cs=>'1', oe=>'1', we=>regwr,addr=>mux1, din=>input, dout=>B);
 	
 end architecture structural;
