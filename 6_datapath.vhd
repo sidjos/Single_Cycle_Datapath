@@ -123,7 +123,7 @@ architecture structural of datapath_6 is
    
    alu_map: alu port map ( ALUctr, busA, busB_In, cout, ovf, Equal, ALU_Output);
   
-   Data_Memory:  	sram	generic map (mem_file => "unsigned_sum_test.dat")
+   Data_Memory:  	sram	generic map (mem_file => "unsigned_sum.dat")
  			                 port map (cs=>'1', oe=>'1', we=>AND_MemWr,addr=>ALU_Output, din=>busB, dout=>Data_Out);
  			 
    Mem_to_reg_mux: mux_32 port map ( MemtoReg, ALU_Output, Data_Out, busW);
