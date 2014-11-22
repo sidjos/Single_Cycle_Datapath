@@ -83,7 +83,7 @@ begin
 	--SRAM
 
 	sram0_map:	sram 	
-			generic map (mem_file => "sort_corrected_branch.dat")
+			generic map (mem_file => "unsigned_sum.dat")
 			port map (cs=>'1',oe=>'1',we=>'0',addr=>pc0,
 					  din=>B"00000000000000000000000000000000",
 					  dout=>instruction);
