@@ -4,14 +4,14 @@ use ieee.numeric_std.all;
 use work.eecs361_gates.all;
 use work.eecs361.all;
 
-entity Group6_SingleCycleProcessor_demo is
+entity g6 is
 port (
 	ovf : out std_logic;
 	cout : out std_logic
 );
-end Group6_SingleCycleProcessor_demo;
+end g6;
 
-architecture structural of Group6_SingleCycleProcessor_demo is
+architecture structural of g6 is
 component top_level is
   port (
         clk : in std_logic;
