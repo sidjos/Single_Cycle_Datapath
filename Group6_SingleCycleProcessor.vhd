@@ -52,14 +52,14 @@ end component;
 signal imm160: std_logic_vector(15 downto 0);
 signal Rd0, Rt0, Rs0: std_logic_vector ( 4 downto 0);
 signal ALUCtr0: std_logic_vector( 3 downto 0);
-signal clk0, branch0, zero0, Reg_Dst0, RegWr0, ExtOp0, ALUSrc0, MemWr0, MemtoReg0, ovf0, cout0, Equal0 : std_logic ;
+signal branch0, zero0, Reg_Dst0, RegWr0, ExtOp0, ALUSrc0, MemWr0, MemtoReg0, ovf0, cout0, Equal0 : std_logic ;
 signal instruction0: Std_logic_vector ( 31 downto 0);
 
 begin
     
-    datapath: datapath_6 port map ( RegWr=>RegWr0, RegDst=>Reg_Dst0, Clk=>Clk0, MemWr=>MemWr0, MemtoReg=>MemtoReg0, ALUSrc=>ALUSrc0, ExtOp=>ExtOp0, ALUCtr=>ALUCtr0, Rd=>Rd0, Rt=>Rt0, Rs=>Rs0, 
+    datapath: datapath_6 port map ( RegWr=>RegWr0, RegDst=>Reg_Dst0, Clk=>clk, MemWr=>MemWr0, MemtoReg=>MemtoReg0, ALUSrc=>ALUSrc0, ExtOp=>ExtOp0, ALUCtr=>ALUCtr0, Rd=>Rd0, Rt=>Rt0, Rs=>Rs0, 
                                      imm16=>imm160, Equal=>Equal0, ovf=>ovf, cout=>cout);
-    instruction_fetch: ins port map ( rst=> reset, imm16=>imm160,clk=>clk0, branch=>branch0, zero=>zero0, instruction=>instruction0);
+    instruction_fetch: ins port map ( rst=> reset, imm16=>imm160,clk=>clk, branch=>branch0, zero=>zero0, instruction=>instruction0);
     
     control : alu_control_logic_s port map (instruction=>instruction0, Reg_Dst=>Reg_Dst0, RegWr=>RegWr0, ExtOp=>ExtOp0, ALUSrc=>ALUSrc0, ALUctr=>ALUctr0, MemWr=>MemWr0, MemtoReg=>MemtoReg0,
                                            Branch=>Branch0, Rd=>Rd0, Rs=>Rs0, Rt=>Rt0);

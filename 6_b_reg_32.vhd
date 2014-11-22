@@ -28,11 +28,11 @@ signal mux1: std_logic_vector(31 downto 0);
 begin
 	      
 		--Arrange 2 Synchronized RAM with proper connections
-	mux0_map:	mux_32	 port map (sel=>regwr, src0(31 downto 5)=>B"000000000000000000000000000", src0(4 downto 0)=>ra,
-					               src1(31 downto 5)=>B"000000000000000000000000000", src1(4 downto 0)=>rw, z=>mux0);
+	mux0_map:	mux_32	 port map (sel=>regwr, src0(31 downto 5)=>B"000100000000000000000000000", src0(4 downto 0)=>ra,
+					               src1(31 downto 5)=>B"000100000000000000000000000", src1(4 downto 0)=>rw, z=>mux0);
 
-	mux1_map:	mux_32	 port map (sel=>regwr, src0(31 downto 5)=>B"000000000000000000000000000", src0(4 downto 0)=>rb,
-					               src1(31 downto 5)=>B"000000000000000000000000000", src1(4 downto 0)=>rw, z=>mux1);
+	mux1_map:	mux_32	 port map (sel=>regwr, src0(31 downto 5)=>B"000100000000000000000000000", src0(4 downto 0)=>rb,
+					               src1(31 downto 5)=>B"000100000000000000000000000", src1(4 downto 0)=>rw, z=>mux1);
 	
 	--mux0test <= mux0; for testing
 	--mux1test <= mux1; for testing
