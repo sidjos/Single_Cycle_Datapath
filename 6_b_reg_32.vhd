@@ -35,7 +35,7 @@ end component;
 signal mux0: std_logic_vector(31 downto 0);
 signal mux1: std_logic_vector(31 downto 0);
 signal busW_out, address, Rt_sig, Rs_sig : std_logic_vector (31 downto 0);
-signal RegWr_out0, RegWr_out: std_logic;
+signal RegWr_out0, RegWr_out, batman, batman2: std_logic;
 signal Rw_out, Rw: std_logic_vector (4 downto 0);
 
 begin
@@ -87,6 +87,9 @@ begin
     dff37_map:	dffr	port map ( clk, RegWr, RegWr_out0);
 sync_and: and_gate port map ( clk, RegWr_out0, RegWr_out);
 
+dffr38_map: dffr port map ( clk, '1', batman);
+sync_and2: and_gate port map (clk, batman, batman2);
+
 --Ra <= Rs
 address <= "000000000000000000000000000" & Rw_out;
 Rt_sig <= "000000000000000000000000000" & Rt;
@@ -97,8 +100,6 @@ Rs_sig <= "000000000000000000000000000" & Rs;
 
 	mux1_map:	mux_32	 port map (sel=>clk, src0=>Rt_sig,
 					               src1=>address, z=>mux1);
-	
-
 
 	sram0_map:  	sram	
  			generic map (mem_file => "reg_init.dat")
