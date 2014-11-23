@@ -86,12 +86,23 @@ begin
     
     dff37_map:	dffr	port map ( clk, RegWr, RegWr_out);
 
+
+--Ra <= Rs
+
+	mux0_map:	mux_32	 port map (sel=>clk, src0(31 downto 5)=>B"000000000000000000000000000", src0(4 downto 0)=>Rs,
+					               src1(31 downto 5)=>B"000000000000000000000000000", src1(4 downto 0)=>Rw_out, z=>mux0);
+
+	mux1_map:	mux_32	 port map (sel=>clk, src0(31 downto 5)=>B"000000000000000000000000000", src0(4 downto 0)=>Rt,
+					               src1(31 downto 5)=>B"000000000000000000000000000", src1(4 downto 0)=>Rw_out, z=>mux1);
+	
+
+
 	sram0_map:  	sram	
  			generic map (mem_file => "reg_init.dat")
- 			port map (cs=>'1', oe=>'1', we=>regwr_out,addr=>mux0, din=>busW_out, dout=>A);
+ 			port map (cs=>'1', oe=>'1', we=>RegWr_out,addr=>mux0, din=>busW_out, dout=>A);
 
 	sram1_map:  	sram	 
 			generic map (mem_file => "reg_init.dat")
-			port map (cs=>'1', oe=>'1', we=>regwr_out,addr=>mux1, din=>busW_out, dout=>B);
+			port map (cs=>'1', oe=>'1', we=>RegWr_out,addr=>mux1, din=>busW_out, dout=>B);
 
 end architecture structural;

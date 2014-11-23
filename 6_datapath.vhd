@@ -83,7 +83,7 @@ dout  :	out std_logic_vector(31 downto 0)
            );
    end component;
  
-   signal busA, busB, busW, busW_out, busB_In, imm_extended, Data_Out, ALU_Output : std_logic_vector (31 downto 0);
+   signal busA, busB, busW, busB_In, imm_extended, Data_Out, ALU_Output : std_logic_vector (31 downto 0);
    
    begin 
    
