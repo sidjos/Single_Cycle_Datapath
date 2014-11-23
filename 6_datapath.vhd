@@ -6,7 +6,7 @@ use work.eecs361.all;
 
 entity datapath_6 is
     port(
-        RegWr, RegDst, Clk, MemWr, MemtoReg, ALUSrc, ExtOp : in std_logic;
+        RegWr, RegDst, clk, rst, MemWr, MemtoReg, ALUSrc, ExtOp : in std_logic;
         ALUCtr: in std_logic_vector (3 downto 0);
         Rd, Rt, Rs: in std_logic_vector (4 downto 0);
         imm16: in std_logic_vector (15 downto 0);
@@ -88,7 +88,7 @@ dout  :	out std_logic_vector(31 downto 0)
    
    begin 
    
-   Register_Memory: reg_32 port map ( clk, RegWr, RegDst, Rs, Rt, Rd, busW, busA, busB);
+   Register_Memory: reg_32 port map ( clk, rst, RegWr, RegDst, Rs, Rt, Rd, busW, busA, busB);
    
    extender_datapath: extender port map ( ExtOp, imm16, imm_extended);
    

@@ -14,7 +14,7 @@ architecture structural of top_level is
 
 component datapath_6 is
     port(
-        RegWr, RegDst, Clk, MemWr, MemtoReg, ALUSrc, ExtOp : in std_logic;
+        RegWr, RegDst, clk, rst, MemWr, MemtoReg, ALUSrc, ExtOp : in std_logic;
         ALUCtr: in std_logic_vector (3 downto 0);
         Rd, Rt, Rs: in std_logic_vector (4 downto 0);
         imm16: in std_logic_vector (15 downto 0);
@@ -60,7 +60,7 @@ signal instruction0: Std_logic_vector ( 31 downto 0);
 
 begin
     
-    datapath: datapath_6 port map ( RegWr=>RegWr0, RegDst=>Reg_Dst0, Clk=>clk, MemWr=>MemWr0, MemtoReg=>MemtoReg0, ALUSrc=>ALUSrc0, ExtOp=>ExtOp0, ALUCtr=>ALUCtr0, Rd=>Rd0, Rt=>Rt0, Rs=>Rs0, 
+    datapath: datapath_6 port map ( RegWr=>RegWr0, RegDst=>Reg_Dst0, Clk=>clk, rst<=reset, MemWr=>MemWr0, MemtoReg=>MemtoReg0, ALUSrc=>ALUSrc0, ExtOp=>ExtOp0, ALUCtr=>ALUCtr0, Rd=>Rd0, Rt=>Rt0, Rs=>Rs0, 
                                      imm16=>imm160, Equal=>Equal0, ovf=>ovf, cout=>cout);
     instruction_fetch: ins port map ( rst=> reset, imm16=>imm160,clk=>clk, bne_branch=>bne_branch0, beq_branch=>beq_branch0,zero=>Equal0, instruction=>instruction0);
     

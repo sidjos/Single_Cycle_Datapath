@@ -12,11 +12,13 @@ entity register_32 is
         WrEn      : in std_logic;
         ReadEn  : in std_logic;
         input	 : in std_logic_vector(31 downto 0);
-        output   	 : out std_logic_vector(31 downto 0);
+        output   	 : out std_logic_vector(31 downto 0)
       );
 end register_32;
 
 architecture structural of register_32 is
+
+signal output_mem: std_logic_vector(31 downto 0);
 
 begin
    
