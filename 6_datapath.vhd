@@ -54,6 +54,7 @@ dout  :	out std_logic_vector(31 downto 0)
     
       port (
         clk   : in std_logic;
+        rst   : in std_logic;
         regwr        : in  std_logic;
         RegDst : in std_logic; 
         rs : in std_logic_vector(4 downto 0);
