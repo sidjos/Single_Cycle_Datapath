@@ -28,12 +28,9 @@ clock <= not clock after 5 ns;
 
 testprocess: process begin
 reset_sig <= '1';
-wait for 5 ns;
-reset_sig <='1';
-wait for 5 ns;
-reset_sig<='0';
+wait for 11 ns;
+reset_sig <= '0';
 wait;
-
 end process;
 
 end structural;

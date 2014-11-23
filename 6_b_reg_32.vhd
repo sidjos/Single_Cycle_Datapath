@@ -8,6 +8,7 @@ entity reg_32 is
     
       port (
         clk   : in std_logic;
+        rst   : in std_logic;
         regwr        : in  std_logic;
         RegDst      : in std_logic;
         rs 		 : in std_logic_vector(4 downto 0);
@@ -35,12 +36,12 @@ end component;
 signal mux0: std_logic_vector(31 downto 0);
 signal mux1: std_logic_vector(31 downto 0);
 signal busW_out, address, Rt_sig, Rs_sig : std_logic_vector (31 downto 0);
-signal RegWr_out0, RegWr_out, batman, batman2: std_logic;
-signal Rw_out, Rw: std_logic_vector (4 downto 0);
+signal RegWr_out0, RegWr_out, batman, batman2, not_clk: std_logic;
+signal Rw_out, Rw, RWS, RWT: std_logic_vector (4 downto 0);
 
 begin
    
-	mux_rs_rt_rw: mux_5_S port map ( RegDst, Rt, Rd, Rw);
+	mux_rs_rt_rw: mux_5_S port map ( RegDst, rt, rd, Rw);
 	
 	 dff0_map:	dffr	port map ( clk, input(0), busW_out(0));
     dff1_map:	dffr	port map ( clk, input(1), busW_out(1));
@@ -78,28 +79,48 @@ begin
     dff30_map:	dffr	port map ( clk, input(30), busW_out(30));
     dff31_map:	dffr	port map ( clk, input(31), busW_out(31));
     
-        dff32_map:	dffr	port map ( clk, Rw(0), Rw_out(0));
-        dff33_map:	dffr	port map ( clk, Rw(1), Rw_out(1));
-        dff34_map:	dffr	port map ( clk, Rw(2), Rw_out(2));
-        dff35_map:	dffr	port map ( clk, Rw(3), Rw_out(3));
-        dff36_map:	dffr	port map ( clk, Rw(4), Rw_out(4));
+--        dff32_map:	dffr	port map ( clk, Rw(0), Rw_out(0));
+--        dff33_map:	dffr	port map ( clk, Rw(1), Rw_out(1));
+--        dff34_map:	dffr	port map ( clk, Rw(2), Rw_out(2));
+--        dff35_map:	dffr	port map ( clk, Rw(3), Rw_out(3));
+--        dff36_map:	dffr	port map ( clk, Rw(4), Rw_out(4));
     
-    dff37_map:	dffr	port map ( clk, RegWr, RegWr_out0);
+    dff37_map:	dffr_a	port map ( clk, '0', rst, '0', RegWr, '1', RegWr_out0);
 sync_and: and_gate port map ( clk, RegWr_out0, RegWr_out);
 
 dffr38_map: dffr port map ( clk, '1', batman);
 sync_and2: and_gate port map (clk, batman, batman2);
 
+notClock: not_gate port map (clk, not_clk);
+
+s0: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rs(0), d=>Rw(0), enable=>'1',q=>RWS(0));
+s1: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rs(1), d=>Rw(1), enable=>'1',q=>RWS(1));
+s2: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rs(2), d=>Rw(2), enable=>'1',q=>RWS(2));
+s3: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rs(3), d=>Rw(3), enable=>'1',q=>RWS(3));
+s4: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rs(4), d=>Rw(4), enable=>'1',q=>RWS(4));
+
+s5: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rt(0), d=>Rw(0), enable=>'1',q=>RWT(0));
+s6: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rt(1), d=>Rw(1), enable=>'1',q=>RWT(1));
+s7: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rt(2), d=>Rw(2), enable=>'1',q=>RWT(2));
+s8: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rt(3), d=>Rw(3), enable=>'1',q=>RWT(3));
+s9: dffr_a	port map (clk=>clk, arst=>'0',aload=>not_clk, adata=>rt(4), d=>Rw(4), enable=>'1',q=>RWT(4));
+
+
+mux0 <= "000000000000000000000000000" & RWS;
+mux1 <= "000000000000000000000000000" & RWT;
+
+
+
 --Ra <= Rs
-address <= "000000000000000000000000000" & Rw_out;
-Rt_sig <= "000000000000000000000000000" & Rt;
-Rs_sig <= "000000000000000000000000000" & Rs;
+--address <= "000000000000000000000000000" & Rw_out;
+--Rt_sig <= "000000000000000000000000000" & Rt;
+--Rs_sig <= "000000000000000000000000000" & Rs;
 
-	mux0_map:	mux_32	 port map (sel=>clk, src0=>Rs_sig,
-					               src1=>address, z=>mux0);
-
-	mux1_map:	mux_32	 port map (sel=>clk, src0=>Rt_sig,
-					               src1=>address, z=>mux1);
+--	mux0_map:	mux_32	 port map (sel=>clk, src0=>Rs_sig,
+--					               src1=>address, z=>mux0);
+--
+--	mux1_map:	mux_32	 port map (sel=>clk, src0=>Rt_sig,
+--					               src1=>address, z=>mux1);
 
 	sram0_map:  	sram	
  			generic map (mem_file => "reg_init.dat")
