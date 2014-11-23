@@ -34,8 +34,8 @@ end component;
 
 signal mux0: std_logic_vector(31 downto 0);
 signal mux1: std_logic_vector(31 downto 0);
-signal busW_out : std_logic_vector (31 downto 0);
-signal RegWr_out: std_logic;
+signal busW_out, address, Rt_sig, Rs_sig : std_logic_vector (31 downto 0);
+signal RegWr_out0, RegWr_out: std_logic;
 signal Rw_out, Rw: std_logic_vector (4 downto 0);
 
 begin
@@ -84,16 +84,19 @@ begin
         dff35_map:	dffr	port map ( clk, Rw(3), Rw_out(3));
         dff36_map:	dffr	port map ( clk, Rw(4), Rw_out(4));
     
-    dff37_map:	dffr	port map ( clk, RegWr, RegWr_out);
-
+    dff37_map:	dffr	port map ( clk, RegWr, RegWr_out0);
+sync_and: and_gate port map ( clk, RegWr_out0, RegWr_out);
 
 --Ra <= Rs
+address <= "000000000000000000000000000" & Rw_out;
+Rt_sig <= "000000000000000000000000000" & Rt;
+Rs_sig <= "000000000000000000000000000" & Rs;
 
-	mux0_map:	mux_32	 port map (sel=>clk, src0(31 downto 5)=>B"000000000000000000000000000", src0(4 downto 0)=>Rs,
-					               src1(31 downto 5)=>B"000000000000000000000000000", src1(4 downto 0)=>Rw_out, z=>mux0);
+	mux0_map:	mux_32	 port map (sel=>clk, src0=>Rs_sig,
+					               src1=>address, z=>mux0);
 
-	mux1_map:	mux_32	 port map (sel=>clk, src0(31 downto 5)=>B"000000000000000000000000000", src0(4 downto 0)=>Rt,
-					               src1(31 downto 5)=>B"000000000000000000000000000", src1(4 downto 0)=>Rw_out, z=>mux1);
+	mux1_map:	mux_32	 port map (sel=>clk, src0=>Rt_sig,
+					               src1=>address, z=>mux1);
 	
 
 
