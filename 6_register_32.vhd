@@ -9,7 +9,8 @@ entity register_32 is
       port (
         clk   : in std_logic;
         rst: in std_logic;
-        WrEn      : in std_logic;
+        RegWr: in std_logic;
+        WrEnS      : in std_logic;
         ReadEn  : in std_logic;
         input	 : in std_logic_vector(31 downto 0);
         output   	 : out std_logic_vector(31 downto 0)
@@ -17,10 +18,12 @@ entity register_32 is
 end register_32;
 
 architecture structural of register_32 is
-
+signal WrEn: std_logic; 
 signal output_mem: std_logic_vector(31 downto 0);
 
 begin
+    
+   AND_Reg_Wr: and_gate port map (RegWr, WrEnS, WrEn); 
    
 	dff0_map:	dffr_a	port map (clk=>clk, arst=>rst,aload=>'0', adata=>'0', d=>input(0), enable=>WrEn,q=>output_mem(0));
 	dff1_map:	dffr_a	port map (clk=>clk, arst=>rst,aload=>'0', adata=>'0', d=>input(1), enable=>WrEn,q=>output_mem(1));
