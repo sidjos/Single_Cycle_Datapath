@@ -23,7 +23,7 @@ add wave -noupdate -format Literal -radix hexadecimal /group6_singlecycleprocess
 add wave -noupdate -format Literal -radix hexadecimal /group6_singlecycleprocessor_demo/test/datapath/data_memory/alu_output
 add wave -noupdate -format Logic /group6_singlecycleprocessor_demo/test/datapath/data_memory/memwr_out
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {10 ns} 0}
+WaveRestoreCursors {{Cursor 1} {13 ns} 0}
 configure wave -namecolwidth 533
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
@@ -37,4 +37,4 @@ configure wave -gridperiod 10
 configure wave -griddelta 40
 configure wave -timeline 1
 update
-WaveRestoreZoom {10 ns} {36 ns}
+WaveRestoreZoom {0 ns} {26 ns}
