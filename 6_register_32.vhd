@@ -4,6 +4,8 @@ use ieee.numeric_std.all;
 use work.eecs361_gates.all;
 use work.eecs361.all;
 
+
+
 entity register_32 is
     
       port (

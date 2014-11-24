@@ -4,6 +4,7 @@ use ieee.numeric_std.all;
 use work.eecs361_gates.all;
 use work.eecs361.all;
 
+--sidjos@gmail.com Merged with master.
 
 entity reg_32 is
     
