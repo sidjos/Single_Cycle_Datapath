@@ -5,3 +5,5 @@ work/
 !*.vhd
 !*.dat
 !*.do
+!*.pdf
+!*.jpg
