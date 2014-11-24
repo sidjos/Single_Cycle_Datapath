@@ -20,7 +20,7 @@ architecture structural of datamem is
         
     memory_and: and_gate port map (clk, MemWr, MemWr_out);
     
-datamem_SRAM: sram	generic map (mem_file => "bills_branch.dat")
+datamem_SRAM: sram	generic map (mem_file => "sort_corrected_branch.dat")
                  port map (cs=>'1', oe=>'1', we=>MemWr_out,addr=>ALU_Output, din=>busB_in, dout=>Data_Out);
     
 end structural;
